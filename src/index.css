@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+
+
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+
+  
+  @theme {
+  --font-header: 'Merriweather', serif;
+  --font-body: 'Roboto Serif', serif;
+  --font-nav: 'Inter', sans-serif;
+}
+
+
+
+body {
+   
+    background-color: theme(--color-white);
+    color: theme(--color-black);
+    font-family: var(--font-nav);
+    min-height: 100vh;
+  }
