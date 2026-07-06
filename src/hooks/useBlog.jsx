@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { API_KEY, BASE_URL } from "../utils/helpers";
+
 
 function usePosts(category = "") {
     const [posts, setPosts] = useState([]);
@@ -13,8 +13,8 @@ function usePosts(category = "") {
 
             try {
                 const postsUrl = category
-                    ? `${BASE_URL}/everything?q=${encodeURIComponent(category)}&pageSize=100&apiKey=${API_KEY}`
-                    : `${BASE_URL}/top-headlines?country=us&pageSize=100&apiKey=${API_KEY}`;
+                   ? `/api/news?type=everything&category=${encodeURIComponent(category)}`
+                   : `/api/news?type=top-headlines`;
 
                 const res = await fetch(postsUrl);
                 if (!res.ok) throw new Error(`API error: ${res.status}`);
