@@ -1,36 +1,68 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
-import {BiSad} from 'react-icons/bi'
+import React from "react";
+import { useState, useEffect } from "react";
+import PostCard from "../components/PostCard";
+import Spinner from "../components/ui/Spinner";
+import ErrorMessage from "../components/ui/ErrorMessage";
+import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import Blogpost from "../components/ui/Blogpost";
+import BlogSearch from "../components/Blog/BlogSearch";
 
-const Fashion = () => {
-    const navigate = useNavigate();
-    const {handleLogout} = useAuth();
+export default function FashionPosts({ category = "fashion", user }) {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [query, setQuery] = useState("");
+
+  const { handleLogout } = useAuth();
+
+  const fetchFashion = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(
+        `/api/news?type=everything&category=${category}`
+      );
+
+      if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
+      const data = await res.json();
+      setArticles(data.articles || []);
+    } catch (err) {
+      console.error("Failed to fetch fashion articles:", err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchFashion();
+  }, [category]);
+
+  if (loading) return <Spinner />;
+  if (error) return <ErrorMessage message={error} onRetry={fetchFashion} />;
+
+  const filteredArticles = query
+    ? articles.filter(a => a.title.toLowerCase().includes(query.toLowerCase()))
+    : articles;
+
+  const featured = articles.slice(0, 3);
+  const sponsored = articles.slice(3);
+
   return (
-    <main className='max-w-4xl mx-auto px-4 py-10 space-y-10'>
-        <div className='flex flex-col items-center justify-center min-h-screen text-center px-4'>
-          <BiSad className='text-8xl text-teal-600 mx-auto' />
-          <h1 className='text-5xl font-bold font-header'>OOPS!</h1>
-          <p className='text-gray-500 max-w-sm mb-6 font-body'>Look like the page you are trying to access is under
-          serious development construction.</p>
-          <div className='flex gap-3'>
-            <button
-            onClick={() => navigate(-1)}
-            className='bg-teal-600 text-gray-900 px-5 py-2 rounded-md font-medium hover:bg-teal-700'>
-            Go Back
-            </button>
-            <button
-            onClick={handleLogout}
-            className='bg-gray-200 text-gray-900 px-5 py-2 rounded-md font-medium hover:bg-gray-100'>
-             Log out
-            </button>
-            
-        </div>
-        </div>
-        
-     
-    </main>
-  )
-}
+    <div className="mb-8">
+      <BlogSearch onSearch={setQuery} isLoading={loading} />
 
-export default Fashion
+      <div className="p-6 bg-gray-100 min-h-screen">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Featured Posts</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+          {featured.map((article) => <PostCard key={article.url} article={article} />)}
+        </div>
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Sponsored Posts</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {sponsored.map((article) => <PostCard key={article.url} article={article} />)}
+        </div>
+      </div>
+    </div>
+  );
+}
