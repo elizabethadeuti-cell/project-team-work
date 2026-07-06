@@ -52,7 +52,7 @@ const Login = () => {
 
           <div className="w-1/2 flex items-center justify-center bg-white p-10 relative">
             <img
-              src={postlyimg}
+              src={postlyImg}
               alt="login illustration"
               className="w-[380px] object-contain relative z-10"
             />
