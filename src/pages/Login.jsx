@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../assets/images/logo.png';
-import postlyimg from '../assets/images/postlyimg.png';
+import postlyImg from '../assets/images/postlyImg.png';
 import { Eye, EyeOff } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 
