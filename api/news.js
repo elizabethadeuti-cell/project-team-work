@@ -6,8 +6,8 @@ export default async function handler(req, res) {
   try {
     const url =
       type === "everything"
-        ? `${baseUrl}/everything?q=${encodeURIComponent(category)}&pageSize=100&apiKey=${apiKey}`
-        : `${baseUrl}/top-headlines?country=us&pageSize=100&apiKey=${apiKey}`;
+       ? `${baseUrl}/everything?q=${encodeURIComponent(category)}&pageSize=100&apiKey=${apiKey}`
+        : `${baseUrl}/top-headlines?country=us&category=${category}&pageSize=40&apiKey=${apiKey}`;
 
     const response = await fetch(url);
     const data = await response.json();

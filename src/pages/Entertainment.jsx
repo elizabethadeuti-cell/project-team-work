@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { API_KEY, BASE_URL } from "../utils/helpers";
 import PostCard from "../components/PostCard";
 import Spinner from "../components/ui/Spinner";
 import ErrorMessage from "../components/ui/ErrorMessage";
@@ -24,8 +23,7 @@ export default function EntertainmentPosts({ category = "entertainment" , user})
     setError(null);
     try {
       const res = await fetch(
-     
-  `https://newsapi.org/v2/top-headlines?country=us&category=${category}&PageSize=40&apiKey=27ed58be48434ce08ac861453f560dd5`
+  `/api/news?type=top-headlines&category=${category}`
 );
       
       if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
