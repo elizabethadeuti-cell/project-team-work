@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
-import { API_KEY, BASE_URL } from "../utils/helpers";
 import Spinner from "./ui/Spinner";
 import ErrorMessage from "./ui/ErrorMessage";
 
