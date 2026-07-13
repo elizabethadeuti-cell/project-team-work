@@ -52,8 +52,8 @@ export default function EntertainmentPosts({ category = "entertainment" , user})
   : articles;
 
   const featured = articles.slice(0, 3);
-  const sponsored = articles.slice(3,3 + visibleCount);
-  const hasMore = article.length > 3 + visibleCount;
+  const sponsored = articles.slice(3, 3 + visibleCount);
+  const hasMore = articles.length > 3 + visibleCount;
 
   return (
     <div className="mb-8">
