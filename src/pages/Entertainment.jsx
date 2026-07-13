@@ -52,7 +52,7 @@ export default function EntertainmentPosts({ category = "entertainment" , user})
   : articles;
 
   const featured = articles.slice(0, 3);
-  const sponsored = articles.slice(3, 3 + visibleCount);
+  const sponsored = articles.slice(3 + visibleCount);
   const hasMore = articles.length > 3 + visibleCount;
 
   return (
@@ -69,10 +69,10 @@ export default function EntertainmentPosts({ category = "entertainment" , user})
         {sponsored.map((article) => <PostCard key={article.url} article={article} />)}
       </div>
       {hasMore && (
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-start mt-6">
         <button 
         onClick={() => setVisibleCount((prev) => prev + 6)}
-        className="px-6 py-2 rounded-lg bg-teal-600 text-white font-medium hover:bg-teals-700 transition">
+        className="px-6 py-1.5 rounded-lg bg-teal-600 text-white text-sm font-medium hover:bg-teals-700 transition">
         Load More
         </button>
         </div>

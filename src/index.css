@@ -6,6 +6,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 }
 
@@ -25,4 +26,5 @@ body {
     color: theme(--color-black);
     font-family: var(--font-nav);
     min-height: 100vh;
+    overflow-x: hidden;
   }
