@@ -15,6 +15,8 @@ export default function EntertainmentPosts({ category = "entertainment" , user})
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [query, setQuery] = useState("");
+  const [visibleCount, setVisibleCount] = useState(6)
+
 
    const { handleLogout } = useAuth();
 
@@ -50,7 +52,8 @@ export default function EntertainmentPosts({ category = "entertainment" , user})
   : articles;
 
   const featured = articles.slice(0, 3);
-  const sponsored = articles.slice(3);
+  const sponsored = articles.slice(3,3 + visibleCount);
+  const hasMore = article.length > 3 + visibleCount;
 
   return (
     <div className="mb-8">
@@ -65,6 +68,16 @@ export default function EntertainmentPosts({ category = "entertainment" , user})
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {sponsored.map((article) => <PostCard key={article.url} article={article} />)}
       </div>
+      {hasMore && (
+        <div className="flex justify-center mt-6">
+        <button 
+        onClick={() => setVisibleCount((prev) => prev + 6)}
+        className="px-6 py-2 rounded-lg bg-teal-600 text-white font-medium hover:bg-teals-700 transition">
+        Load More
+        </button>
+        </div>
+       
+      )}
     </div>
     </div>
   );
