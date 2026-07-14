@@ -1,16 +1,28 @@
-import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import SideBar from './SideBar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { Menu } from 'lucide-react';
 
-const Layout = ({user, children }) => {
+const Layout = ({ user, children }) => {
   const location = useLocation();
- const knownPaths = [ '/entertainment', '/fashion', '/sport', '/business', '/movies', '/education', '/blog' ];
-const hideSidebar = !knownPaths.some(path => path === '/' ? location.pathname === '/' : location.pathname.toLowerCase().startsWith(path.toLowerCase()));
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const knownPaths = ['/entertainment', '/fashion', '/sport', '/business', '/movies', '/education'];
+  const hideSidebar = !knownPaths.some(path => path === '/' ? location.pathname === '/' : location.pathname.startsWith(path));
+
   return (
-    <div className="flex h-screen overflow-hidden">
-      {!hideSidebar && <SideBar />}
-      <main className="flex-1 min-h-screen overflow-y-auto">
-        
+    <div className="flex min-h-screen">
+      {!hideSidebar && (
+        <SideBar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      )}
+      <main className="flex-1 min-h-screen">
+        {!hideSidebar && (
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="md:hidden p-4 text-teal-600"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+        )}
         {children}
       </main>
     </div>

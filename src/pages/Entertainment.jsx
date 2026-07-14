@@ -69,12 +69,12 @@ export default function EntertainmentPosts({ category = "entertainment" , user})
         {sponsored.slice(0, visibleCount).map((article) => <PostCard key={article.url} article={article} />)}
       </div>
       {hasMore && (
-        <div className="flex justify-end mt-6">
-        <button 
-        onClick={() => setVisibleCount((prev) => prev + 6)}
-        className="px-4 py-1.5 rounded-lg bg-teal-600 text-white text-sm font-medium hover:bg-teals-700 transition">
-        Load More
-        </button>
+        <div className="flex justify-end mt-4">
+         <button
+           onClick={() => setVisibleCount((prev) => prev + 6)} 
+            className='bg-teal-600 text-white text-sm rounded-md font-medium hover:bg-teal-700 py-2 px-2 mt-3'>
+            Load More
+            </button>
         </div>
        
       )}

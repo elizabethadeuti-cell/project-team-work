@@ -48,6 +48,9 @@ function Share() {
         >
           <FaLinkedinIn />
         </a>
+        <a href="https://www.instagram.com/yourpostlyhandle" target="_blank" rel="noopener noreferrer">
+         <FaInstagram size={19} className="text-teal-600 cursor-pointer" />
+      </a>
         </div>
 
         <div className=' items-center justify-center font-body gap-3'>
