@@ -25,7 +25,7 @@ const SideBar = ({isOpen, onClose }) => {
 
   return (
     <>
-    {isopen &&(
+    {isOpen &&(
       <div className='fixed inset-0 bg-black/40 Z-40 md:hidden'
      onClick={onClose} 
      />
