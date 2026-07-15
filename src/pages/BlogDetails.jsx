@@ -6,7 +6,7 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaCopy } from "react-ic
 import usePosts from '../hooks/useBlog';
 import PostCard from "../components/PostCard";
 import { LogOut } from 'lucide-react';
-import { useAuth } from '../hooks/useAuth'
+import useAuth from "../hooks/useAuth";
 
 const BlogDetails = () => {
   const { id } = useParams();
