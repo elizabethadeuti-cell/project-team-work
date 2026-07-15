@@ -40,7 +40,8 @@ const SideBar = ({isOpen, onClose }) => {
         <button onClick={onClose} className="md:hidden self-end mr-4 text-white">
           <X className="w-5 h-5" />
         </button>
-    <div className="w-46 bg-teal-600 min-h-[80vh] flex flex-col py-3 px-0 gap-1 rounded-tr-3xl">
+
+    
         <div className='px-5 mb-6'>
             <img src={logo}
             alt='postly logo'
@@ -77,7 +78,7 @@ const SideBar = ({isOpen, onClose }) => {
   </button>
   
 </div>
-    </div>
+    
     </>
   );
 };
