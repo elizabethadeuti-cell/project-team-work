@@ -6,15 +6,15 @@ import { Menu } from 'lucide-react';
 const Layout = ({ user, children }) => {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const knownPaths = ['/entertainment', '/fashion', '/sport', '/business', '/movies', '/education'];
-  const hideSidebar = !knownPaths.some(path => path === '/' ? location.pathname === '/' : location.pathname.startsWith(path));
+  const hiddenOnPaths = ['/login', '/signup'];
+  const hideSidebar = hiddenOnPaths.some(path => location.pathname.startsWith(path));
 
   return (
     <div className="flex min-h-screen">
       {!hideSidebar && (
         <SideBar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       )}
-      <main className="flex-1 min-h-screen">
+      <main className="flex-1 min-h-screen overflow-y-auto">
         {!hideSidebar && (
           <button
             onClick={() => setSidebarOpen(true)}

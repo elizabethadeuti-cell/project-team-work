@@ -48,6 +48,7 @@ const BlogDetails = () => {
   };
 
   return (
+    <Layout user={user}>
     <div className="min-h-screen mr-96 max-w-9xl mx-auto p-6 bg-white grid grid-cols-1 md:grid-cols-[350px_1fr] gap-10">
       <button
         onClick={() => navigate(-1)}
@@ -154,6 +155,7 @@ const BlogDetails = () => {
         </div>
       </div>
     </div>
+    </Layout>
   );
 };
 
