@@ -3,7 +3,7 @@ import { useLocation, Outlet } from "react-router-dom";
 import SideBar from "./SideBar";
 import { Menu } from "lucide-react";
 
-const Layout = ({ user}) => {
+const Layout = ({ user, children }) => {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const hiddenOnPaths = ['/login', '/signup'];
@@ -28,7 +28,7 @@ const Layout = ({ user}) => {
             <Menu className="w-6 h-6" />
           </button>
         )}
-        <Outlet />
+        {children}
       </main>
     </div>
   );
