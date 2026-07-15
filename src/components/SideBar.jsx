@@ -4,6 +4,7 @@ import { FaTshirt, FaRunning, FaBriefcase, FaFilm, FaGraduationCap, FaTv } from 
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/images/logo.png';
 import useAuth  from "../hooks/useAuth";
+import {X, LogOut} from 'lucide-react'
 
 const categories = [
     { name: 'Entertainment', icon: <FaTv /> },
