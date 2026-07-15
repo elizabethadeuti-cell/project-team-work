@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import SideBar from './SideBar';
-import { Outlet, useLocation } from 'react-router-dom';
-import { Menu } from 'lucide-react';
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import SideBar from "./SideBar";
+import { Menu } from "lucide-react";
 
 const Layout = ({ user, children }) => {
   const location = useLocation();
@@ -10,11 +10,12 @@ const Layout = ({ user, children }) => {
   const hideSidebar = hiddenOnPaths.some(path => location.pathname.startsWith(path));
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-screen overflow-hidden">
       {!hideSidebar && (
         <SideBar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       )}
-      <main className="flex-1 min-h-screen overflow-y-auto">
+
+      <main className="flex-1 h-screen overflow-y-auto">
         {!hideSidebar && (
           <button
             onClick={() => setSidebarOpen(true)}
