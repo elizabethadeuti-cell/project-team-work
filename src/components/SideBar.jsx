@@ -31,10 +31,34 @@ const SideBar = ({isOpen, onClose }) => {
      onClick={onClose} 
      />
     )}
-    <div  className={`w-46 bg-teal-600 min-h-[80vh] flex flex-col py-3 px-0 gap-1 rounded-tr-3xl
-        fixed md:sticky top-0 left-0 z-50 h-full md:h-screen
-        transform transition-transform duration-300 ease-in-out
-        ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
+   <div
+  className={`
+    w-48
+    bg-teal-600
+    min-h-screen
+    flex
+    flex-col
+    py-3
+    px-2
+    gap-2
+    rounded-tr-3xl
+
+    fixed
+    top-0
+    left-0
+    z-50
+
+    transform
+    transition-transform
+    duration-300
+    ease-in-out
+
+    ${isOpen ? "translate-x-0" : "-translate-x-full"}
+
+    md:sticky
+    md:translate-x-0
+  `}
+>
    
       
         {/* Close button, mobile only */}
