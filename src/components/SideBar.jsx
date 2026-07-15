@@ -31,17 +31,18 @@ const SideBar = ({isOpen, onClose }) => {
      onClick={onClose} 
      />
     )}
-    className={`w-46 bg-teal-600 min-h-[80vh] flex flex-col py-3 px-0 gap-1 rounded-tr-3xl
+    <div  className={`w-46 bg-teal-600 min-h-[80vh] flex flex-col py-3 px-0 gap-1 rounded-tr-3xl
         fixed md:static top-0 left-0 z-50 h-full md:h-auto
         transform transition-transform duration-300 ease-in-out
-        ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
+   
       
         {/* Close button, mobile only */}
         <button onClick={onClose} className="md:hidden self-end mr-4 text-white">
           <X className="w-5 h-5" />
         </button>
 
-    
+       
         <div className='px-5 mb-6'>
             <img src={logo}
             alt='postly logo'
@@ -77,6 +78,7 @@ const SideBar = ({isOpen, onClose }) => {
   Log out
   </button>
   
+</div>
 </div>
     
     </>
