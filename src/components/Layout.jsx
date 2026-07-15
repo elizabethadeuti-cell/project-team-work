@@ -28,7 +28,7 @@ const Layout = ({ user}) => {
             <Menu className="w-6 h-6" />
           </button>
         )}
-        {OutLet}
+        <Outlet />
       </main>
     </div>
   );
