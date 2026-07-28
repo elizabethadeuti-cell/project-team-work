@@ -17,7 +17,7 @@ export default function SportPosts({ category = "sport", user }) {
 
   const { handleLogout } = useAuth();
 
- const fatchSport = async () => {
+ const fetchSport = async () => {
   setLoading(true);
   setError(null);
 
