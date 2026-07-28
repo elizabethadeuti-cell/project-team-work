@@ -16,7 +16,7 @@ function usePosts(category = "") {
       try {
         setPosts([]);
 
-       const postsUrl = category
+      
  const postsUrl = category
   ? `/api/news?type=everything&q=${encodeURIComponent(category)}&pageSize=100`
   : `/api/news?type=top-headlines&pageSize=40`;
