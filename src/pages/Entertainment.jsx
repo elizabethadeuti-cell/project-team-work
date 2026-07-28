@@ -23,22 +23,28 @@ export default function EntertainmentPosts({ category = "entertainment" , user})
   const fetchEntertainment = async () => {
     setLoading(true);
     setError(null);
-    try {
-      const res = await fetch(
-  `/api/news?type=top-headlines&category=${category}`
-);
-      
-      if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
-      const data = await res.json();
-      setArticles(data.articles || []);
-    } catch (err) {
-      console.error("Failed to fetch entertainment articles:", err);
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
 
+    try {
+    const url = `${import.meta.env.VITE_NEWS_BASE_URL}/top-headlines?country=us&category=${category}&pageSize=40&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`;
+
+    console.log("Fetching:", url);
+
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error(`Request failed with status ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    setArticles(data.articles || []);
+  } catch (err) {
+    console.error("Failed to fetch entertainment articles:", err);
+    setError(err.message || "Failed to load entertainment articles.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchEntertainment();
@@ -54,6 +60,8 @@ export default function EntertainmentPosts({ category = "entertainment" , user})
   const featured = articles.slice(0, 3);
   const sponsored = articles.slice(3);
   const hasMore = articles.length > 3 + visibleCount;
+
+  console.log("query:", query, "count:", filteredArticles.length);
 
   return (
     <div className="mb-8">

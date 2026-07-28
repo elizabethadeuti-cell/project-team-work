@@ -13,6 +13,7 @@ export default function EducationPosts({ category = "education", user }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [query, setQuery] = useState("");
+  const [visibleCount, setVisibleCount] = useState(6)
 
   const { handleLogout } = useAuth();
 
@@ -20,9 +21,11 @@ export default function EducationPosts({ category = "education", user }) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(
-        `/api/news?type=everything&category=${category}`
-      );
+     const url = `${import.meta.env.VITE_NEWS_BASE_URL}/everything?q=${encodeURIComponent(category)}&pageSize=100&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`;
+
+    console.log("Fetching:", url);
+
+    const res = await fetch(url);
 
       if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
       const data = await res.json();
@@ -48,6 +51,7 @@ export default function EducationPosts({ category = "education", user }) {
 
   const featured = articles.slice(0, 3);
   const sponsored = articles.slice(3);
+  const hasMore = articles.length > 3 + visibleCount;
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
@@ -57,8 +61,18 @@ export default function EducationPosts({ category = "education", user }) {
       </div>
       <h2 className="text-lg font-semibold text-gray-900 mb-4">Sponsored Posts</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {sponsored.map((article) => <PostCard key={article.url} article={article} />)}
+       {sponsored.slice(0, visibleCount).map((article) => <PostCard key={article.url} article={article} />)}
       </div>
+      {hasMore && (
+        <div className="flex justify-end mt-4">
+         <button
+           onClick={() => setVisibleCount((prev) => prev + 6)} 
+            className='bg-teal-600 text-white text-sm rounded-md font-medium hover:bg-teal-700 py-2 px-2 mt-3'>
+            Load More
+            </button>
+      </div>
+
+        )}
     </div>
   );
 }

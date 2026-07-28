@@ -6,8 +6,8 @@ import { Menu } from "lucide-react";
 const Layout = ({ user, children }) => {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const hiddenOnPaths = ['/login', '/signup'];
-  const hideSidebar = hiddenOnPaths.some(path => location.pathname.startsWith(path));
+  const hiddenOnPaths = ['/', '/login', '/signup'];
+  const hideSidebar = !user;
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -16,10 +16,8 @@ const Layout = ({ user, children }) => {
       )}
 
      <main
-        className={`flex-1 overflow-y-auto ${
-          hideSidebar ? "" : "md:ml-48"
-        }`}
-      >
+        className="flex-1 overflow-y-auto" >
+
         {!hideSidebar && (
           <button
             onClick={() => setSidebarOpen(true)}

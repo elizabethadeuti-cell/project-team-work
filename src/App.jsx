@@ -38,11 +38,11 @@ const {user, authloading} = useAuth();
         path="/entertainment"
         element={<ProtectedRoute><Entertainment  /></ProtectedRoute>} />
         <Route path="/blog" element={<BlogDetails />} />
-       <Route path="/fashion" element={<Fashion /> }/>
-       <Route path="/Sport" element={<Sport /> }/>
-       <Route path="/business" element={<Business /> }/>
-       <Route path="/movies" element={<Movies /> }/>
-       <Route path="/education" element={<Education /> }/>
+       <Route path="/fashion" element={<Fashion category='fashion'/> }/>
+       <Route path="/Sport" element={<Sport  category='sport'/> }/>
+       <Route path="/business" element={<Business  category='business' /> }/>
+       <Route path="/movies" element={<Movies  category='movies' /> }/>
+       <Route path="/education" element={<Education  category='education'/> }/>
        <Route path="/share" element={<Share /> } />
        <Route path="*" element={<NotFoundPage /> } />
       </Routes>

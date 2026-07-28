@@ -1,7 +1,11 @@
 export default async function handler(req, res) {
   const { type, category } = req.query;
-  const apiKey = process.env.VITE_NEWS_API_KEY;
-  const baseUrl = process.env.VITE_NEWS_BASE_URL;
+
+  const apiKey = process.env.NEWS_API_KEY;
+const baseUrl = process.env.NEWS_BASE_URL;
+
+console.log("API Key:", apiKey);
+  console.log("Base URL:", baseUrl);
 
   try {
     const url =

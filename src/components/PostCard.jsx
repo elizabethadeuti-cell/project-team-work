@@ -4,11 +4,51 @@ import { useState } from "react";
 import Spinner from "./ui/Spinner";
 import ErrorMessage from "./ui/ErrorMessage";
 
-
-
-export default function PostCard({ article }) {
+export default function PostCard({ article, compact = false, category = "" }) {
 
   const fallbackImage = "https://via.placeholder.com/400x220?text=No+Image";
+
+  if (compact) {
+    return (
+      <div className="flex gap-3 items-start bg-white p-2 rounded-lg group transition-all duration-200">
+        <img
+          src={article.urlToImage || fallbackImage}
+          alt={article.title}
+          loading="lazy"
+          className="w-14 h-14 shrink-0 object-cover rounded-md group-hover:scale-105 transition-transform duration-300"
+          onError={(e) => (e.target.src = fallbackImage)}
+        />
+        <div className="min-w-0">
+          <h3 className="font-header font-bold text-sm text-gray-900 mb-1 leading-snug line-clamp-2">
+            {article.title}
+          </h3>
+          <p className="font-body text-xs text-gray-600 leading-relaxed">
+            {article.description ? article.description.slice(0, 50) : "No description available."}
+            {"... "}
+          </p>
+          {article.description ? (
+            <Link
+              to="/blog"
+              state={{ article, category }}
+              className="text-teal-600 font-medium hover:underline font-body text-xs inline-block mt-1"
+            >
+              Read More
+            </Link>
+          ) : (
+            <a
+              href={article.url}
+              target="_blank"
+              rel="noreferrer"
+              className="text-teal-600 font-medium hover:underline font-body text-xs inline-block mt-1"
+            >
+              Read More
+            </a>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-[#eceff5] rounded-lg shadow-sm p-3 border border-[#eceff5] group hover:ring-2 hover:ring-teal-500 transition-all duration-200">
     
@@ -28,7 +68,7 @@ export default function PostCard({ article }) {
              {article.description ? (
   <Link
     to="/blog"
-    state={{ article }}
+    state={{ article, category }}
     className="text-teal-600 font-medium hover:underline font-body"
   >
     Read More
