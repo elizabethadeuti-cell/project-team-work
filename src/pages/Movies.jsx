@@ -22,7 +22,8 @@ export default function MoviePosts({ category = "movies", user }) {
   setError(null);
 
   try {
-    const res = await fetch(`/api/news?type=top-headlines&category=${category}`);
+    const res = awaitfetch(`/api/news?type=everything&q=movies`);
+;
 
     if (!res.ok) {
       throw new Error(`Request failed with status ${res.status}`);

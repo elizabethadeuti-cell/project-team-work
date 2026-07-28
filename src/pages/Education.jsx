@@ -22,7 +22,8 @@ export default function EducationPosts({ category = "education", user }) {
   setError(null);
 
   try {
-    const res = await fetch(`/api/news?type=top-headlines&category=${category}`);
+    const res = await fetch(`/api/news?type=everything&q=education`);
+
 
     if (!res.ok) {
       throw new Error(`Request failed with status ${res.status}`);

@@ -22,7 +22,8 @@ export default function SportPosts({ category = "sport", user }) {
   setError(null);
 
   try {
-    const res = await fetch(`/api/news?type=top-headlines&category=${category}`);
+    const res = await fetch(`/api/news?type=everything&q=sport`);
+
 
     if (!res.ok) {
       throw new Error(`Request failed with status ${res.status}`);

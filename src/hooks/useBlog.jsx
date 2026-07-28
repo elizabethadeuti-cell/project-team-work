@@ -17,8 +17,9 @@ function usePosts(category = "") {
         setPosts([]);
 
        const postsUrl = category
-  ? `${import.meta.env.VITE_NEWS_BASE_URL}/everything?q=${encodeURIComponent(category)}&pageSize=100&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`
-  : `${import.meta.env.VITE_NEWS_BASE_URL}/top-headlines?country=us&pageSize=40&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`;
+ const postsUrl = category
+  ? `/api/news?type=everything&q=${encodeURIComponent(category)}&pageSize=100`
+  : `/api/news?type=top-headlines&pageSize=40`;
 
         const res = await fetch(postsUrl);
 
