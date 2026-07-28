@@ -20,23 +20,15 @@ export default function EntertainmentPosts({ category = "entertainment" , user})
 
    const { handleLogout } = useAuth();
 
-  const fetchEntertainment = async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-    const url = `${import.meta.env.VITE_NEWS_BASE_URL}/top-headlines?country=us&category=${category}&pageSize=40&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`;
-
-    console.log("Fetching:", url);
-
-    const res = await fetch(url);
-
+const fetchEntertainment = async () => {
+  setLoading(true);
+  setError(null);
+  try {
+    const res = await fetch(`/api/news?type=top-headlines&category=${category}`);
     if (!res.ok) {
       throw new Error(`Request failed with status ${res.status}`);
     }
-
     const data = await res.json();
-
     setArticles(data.articles || []);
   } catch (err) {
     console.error("Failed to fetch entertainment articles:", err);
@@ -45,7 +37,6 @@ export default function EntertainmentPosts({ category = "entertainment" , user})
     setLoading(false);
   }
 };
-
   useEffect(() => {
     fetchEntertainment();
   }, [category]);
