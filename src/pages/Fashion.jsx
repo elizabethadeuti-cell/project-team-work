@@ -22,7 +22,7 @@ export default function FashionPosts({ category = "???", user }) {
   setError(null);
 
   try {
-    const res = await fetch(`/api/news?type=top-headlines&category=${category}`);
+    const res = await fetch(`/api/news?type=everything&q=fashion`);
 
     if (!res.ok) {
       throw new Error(`Request failed with status ${res.status}`);

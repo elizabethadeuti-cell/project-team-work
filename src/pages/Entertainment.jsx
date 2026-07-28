@@ -61,11 +61,11 @@ const fetchEntertainment = async () => {
     <div className="p-6 bg-gray-100 min-h-screen">
       <h2 className="text-lg font-semibold text-gray-900 mb-4">Featured Posts</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
-        {featured.map((article) => <PostCard key={article.url} article={article} />)}
+        {featured.map((article) => <PostCard key={article.url} article={article} category={category} />)}
       </div>
       <h2 className="text-lg font-semibold text-gray-900 mb-4">Sponsored Posts</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {sponsored.slice(0, visibleCount).map((article) => <PostCard key={article.url} article={article} />)}
+        {sponsored.slice(0, visibleCount).map((article) => <PostCard key={article.url} article={article} category={category} />)}
       </div>
       {hasMore && (
         <div className="flex justify-end mt-4">
