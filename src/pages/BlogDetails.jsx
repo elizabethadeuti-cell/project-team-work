@@ -150,7 +150,7 @@ const BlogDetails = () => {
             <h3 className="font-semibold text-lg mb-4">Related Posts</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {relatedPosts.map((post) => (
-                <PostCard key={post.url} article={post} compact />
+                <PostCard key={post.url} article={post} compact  category={category} />
               ))}
             </div>
           </div>

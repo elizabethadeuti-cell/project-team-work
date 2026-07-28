@@ -64,7 +64,7 @@ export default function FashionPosts({ category = "???", user }) {
         </div>
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Sponsored Posts</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {sponsored.slice(0, visibleCount).map((article) => <PostCard key={article.url} article={article} />)}
+          {sponsored.slice(0, visibleCount).map((article) => <PostCard key={article.url} article={article}  category={category} />)}
         </div>
          {hasMore && (
         <div className="flex justify-end mt-4">
