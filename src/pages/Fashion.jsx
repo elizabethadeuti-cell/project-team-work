@@ -17,26 +17,26 @@ export default function FashionPosts({ category = "???", user }) {
 
   const { handleLogout } = useAuth();
 
-  const fetchFashion = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const url = `${import.meta.env.VITE_NEWS_BASE_URL}/everything?q=${encodeURIComponent(category)}&pageSize=100&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`;
+ const fetchFashion = async () => {
+  setLoading(true);
+  setError(null);
 
-     console.log("Fetching:", url);
+  try {
+    const res = await fetch(`/api/news?type=top-headlines&category=${category}`);
 
-     const res = await fetch(url);
-
-      if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
-      const data = await res.json();
-      setArticles(data.articles || []);
-    } catch (err) {
-      console.error("Failed to fetch fashion articles:", err);
-      setError(err.message);
-    } finally {
-      setLoading(false);
+    if (!res.ok) {
+      throw new Error(`Request failed with status ${res.status}`);
     }
-  };
+
+    const data = await res.json();
+    setArticles(data.articles || []);
+  } catch (err) {
+    console.error("Failed to fetch entertainment articles:", err);
+    setError(err.message || "Failed to load entertainment articles.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchFashion();
