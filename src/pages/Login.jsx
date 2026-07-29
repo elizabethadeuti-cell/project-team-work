@@ -38,19 +38,15 @@ const Login = () => {
   return (
     <main className="min-h-screen flex flex-col bg-gray-100 items-center justify-center p-4 relative">
 
-      
-   
+      <div className="bg-white rounded-sm shadow-md w-full max-w-4xl flex overflow-hidden min-h-[520px] relative">
 
-
-      <div className="bg-white rounded-sm shadow-md w-full max-w-4xl flex overflow-hidden min-h-[520px]">
-
-        <div className="absolute top-13 left-58 z-20">
+        <div className="absolute top-4 left-4 md:top-13 md:left-58 z-20">
           <img src={logo} alt="postly" className="h-7 w-auto object-center" />
         </div>
 
-        <div className="flex flex-1">
+        <div className="flex flex-col md:flex-row flex-1">
 
-          <div className="w-1/2 flex items-center justify-center bg-white p-10 relative">
+          <div className="w-full md:w-1/2 hidden md:flex items-center justify-center bg-white p-10 relative">
             <img
               src={postlyImg}
               alt="login illustration"
@@ -58,7 +54,7 @@ const Login = () => {
             />
           </div>
 
-          <div className="w-1/2 flex items-center justify-center p-10 font-body">
+          <div className="w-full md:w-1/2 flex items-center justify-center p-6 pt-16 md:p-10 font-body">
             <div className="w-full max-w-md">
 
               <h1 className="text-3xl font-bold text-gray-900 mb-8">
@@ -114,7 +110,7 @@ const Login = () => {
                     <label className="text-sm font-medium text-gray-700 font-bold">
                       Password
                     </label>
-                   
+
                   </div>
                   <div className="relative">
                     <input
@@ -137,26 +133,26 @@ const Login = () => {
                 </div>
 
                 {!isSignUp && (
-                  <div className="flex items-center gap-2 text-sm mb-5">
-                    <input
-                      type="checkbox"
-                      id="remember"
-                      checked={rememberMe}
-                      onChange={() => setRememberMe(!rememberMe)}
-                      className="accent-teal-600 w-3.5 h-3.5"
-                    />
-                    <label htmlFor="remember" className="text-gray-500 cursor-pointer">
-                      Remember me
-                    </label>
+                  <div className="flex flex-wrap items-center justify-between gap-2 text-sm mb-5">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="remember"
+                        checked={rememberMe}
+                        onChange={() => setRememberMe(!rememberMe)}
+                        className="accent-teal-600 w-3.5 h-3.5"
+                      />
+                      <label htmlFor="remember" className="text-gray-500 cursor-pointer">
+                        Remember me
+                      </label>
+                    </div>
 
-                     {!isSignUp && (
-                      <span
-                        onClick={() => handleForgotPassword(form.email)}
-                        className="text-xs text-teal-600 hover:underline cursor-pointer gap-2 font-body ml-30"
-                      >
-                        Forgot password?
-                      </span>
-                    )}
+                    <span
+                      onClick={() => handleForgotPassword(form.email)}
+                      className="text-xs text-teal-600 hover:underline cursor-pointer font-body"
+                    >
+                      Forgot password?
+                    </span>
                   </div>
                 )}
 
